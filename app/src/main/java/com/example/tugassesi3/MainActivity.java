@@ -1,34 +1,42 @@
 package com.example.tugassesi3;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button logout;
-    TextView username;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    PageAdapter pageAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        logout = findViewById(R.id.btnlogout);
-        username = findViewById(R.id.tvuname);
+        tabLayout = findViewById(R.id.tablayout);
+        viewPager2 = findViewById(R.id.viewpager);
 
-        Intent intent = getIntent();
-        String tempUsername = intent.getStringExtra("account_username");
+        setViewPager2(viewPager2);
+        new TabLayoutMediator(tabLayout, viewPager2, ((tab, position)-> {
+            tab.setText(pageAdapter.getFragmentTitle(position));
+        })).attach();
+    }
 
-        username.setText(tempUsername);
-
-        logout.setOnClickListener(v -> {
-            Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(logoutIntent);
-        });
-
+    private void setViewPager2(ViewPager2 viewPager2){
+        if(pageAdapter == null){
+            pageAdapter = new PageAdapter(this);
+            pageAdapter.addFragment(new GreetingsFragment(), "Home");
+            pageAdapter.addFragment(new ItemFragment(), "Items");
+            viewPager2.setAdapter(pageAdapter);
+        }
     }
 }
