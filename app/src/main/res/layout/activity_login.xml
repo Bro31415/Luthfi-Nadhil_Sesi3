@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:padding="40px"
-    >
+    tools:context=".LoginActivity">
 
 
     <EditText
@@ -16,17 +15,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:textSize="50px"
-        />
+        android:textSize="50px" />
 
     <EditText
         android:id="@+id/logPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:textSize="50px"
         android:inputType="textPassword"
-        />
+        android:textSize="50px" />
 
     <Button
         android:id="@+id/btnLog"
@@ -39,14 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Haven't created account yet? Register now!"
-        android:textSize="50px"
-        />
+        android:textSize="50px" />
 
     <Button
         android:id="@+id/btntoReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register" />
-
 
 </LinearLayout>
